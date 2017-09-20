@@ -1,4 +1,8 @@
 "use strict"
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+
 import {applyMiddleware, createStore} from 'redux';
 import logger from 'redux-logger';
 
@@ -8,45 +12,30 @@ import reducers from './reducers/index';
 import {addToCart} from './actions/cartActions';
 import {postItem, deleteItem, updateItemTitle} from './actions/itemsActions';
 
-//step 3 define reducer
 
-const counterReducer = function(state=0, action){
-	switch(action.type){
-		case "INCREMENT":
-			return state + action.payload;
-			break;
-		case "DECREMENT":
-			return state - action.payload;
-			break;
-		}
-	return state;
-}
-
-// step 1 - create the store 
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-// step 2 create and dispatch actions
-store.dispatch(postItem([
-		{
-			id: 1, 
-			title: "this is item title",
-			description: "this is the item description",
-			price: '10.99'
-		},
-		{
-			id: 2, 
-			title: "this is item title2",
-			description: "this is the item description",
-			price: '24.99'
-		},
-	]));
+import ItemsList from './components/containers/itemsList';
+import Cart from './components/containers/cartContainer';
+import ItemsForm from './components/containers/itemsForm';
+import Main from './main';
 
-store.dispatch(deleteItem({id: 1}));
+const Routes = (<Provider store={store}>
+		<Router history={browserHistory}>
+			<Route path="/" component={Main}>
+				<IndexRoute component={ItemsList} />
+				<Route path="/admin" component={ItemsForm} />
+				<Route path="/cart" component={Cart} />
+			</Route>
+		</Router>
+	</Provider>
+	)
 
-store.dispatch(updateItemTitle({id: 2, title: "this is the new title"}));
+render(Routes, document.getElementById('app')
+);
 
-store.dispatch(addToCart([{id: 1}]));
 
 

@@ -1,6 +1,12 @@
 "use strict"
-// POST ITEM
+// GET ITEMS
+export function getItems(){
+	return {
+		type: 'GET_ITEMS',
+	}
+}
 
+// POST ITEM
 export function postItem(item){
 	return {
 		type: "POST_ITEM",
@@ -9,7 +15,6 @@ export function postItem(item){
 }
 
 // DELETE ITEM
-
 export function deleteItem(id){
 	return {
 		type: "DELETE_ITEM",
@@ -18,11 +23,9 @@ export function deleteItem(id){
 }
 
 // UPDATE ITEM
-
 export function updateItemTitle(item){
 	return {
 		type: "UPDATE_ITEM_TITLE",
 		payload: item
 	}
-
 }
