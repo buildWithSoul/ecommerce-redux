@@ -3,9 +3,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {findDOMNode} from 'react-dom';
 import { bindActionCreators } from 'redux';
-import {Well, Panel, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
-
-import {postItem, deleteItem} from '../../actions/itemsActions';
+import {InputGroup, DropdownButton, Image, MenuItem, Well, Panel, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
+import axios from 'axios';
+import {postItem, deleteItem, getItems} from '../../actions/itemsActions';
 
 class ItemsForm extends React.Component{
 	handleSubmit(){
@@ -26,6 +26,7 @@ class ItemsForm extends React.Component{
 				})
 			]
 		);
+		this.props.getItems();
 	}
 
 	render() {
@@ -35,7 +36,9 @@ class ItemsForm extends React.Component{
 					{item.title}
 				</option>
 			);
-		})
+		});
+
+
 		return(
 			<Well>
 				<Panel>
@@ -86,7 +89,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({postItem, deleteItem}, dispatch)
+	return bindActionCreators({postItem, deleteItem, getItems}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsForm);

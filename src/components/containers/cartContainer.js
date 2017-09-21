@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import{Panel, Col, Row, Well, Button, ButtonGroup, Modal, Label} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
-import {deleteCartItem, updateCart} from '../../actions/cartActions';
+import {deleteCartItem, updateCart, getCart} from '../../actions/cartActions';
 
 class Cart extends React.Component{
 	constructor(){
@@ -11,6 +11,10 @@ class Cart extends React.Component{
 		this.state = {
 			showModal: false
 		};
+	}
+
+	componentDidMount(){
+		this.props.getCart();
 	}
 
 	openCheckout(){
@@ -42,7 +46,7 @@ class Cart extends React.Component{
 	}
 
 	onIncrement(_id){
-		this.props.updateCart(_id, 1);
+		this.props.updateCart(_id, 1, this.props.cart);
 	}
 
 	onDecrement(_id){
@@ -53,7 +57,7 @@ class Cart extends React.Component{
 		if (this.props.cart[indexToDelete].quantity === 1)
 			this.onDelete(_id);
 		else
-			this.props.updateCart(_id, -1);
+			this.props.updateCart(_id, -1, this.props.cart);
 	}
 
 	renderCart(){
@@ -121,6 +125,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
+		getCart: getCart,
 		deleteCartItem: deleteCartItem,
 		updateCart: updateCart,
 	}, dispatch);
