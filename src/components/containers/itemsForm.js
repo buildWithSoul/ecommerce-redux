@@ -8,6 +8,10 @@ import axios from 'axios';
 import {postItem, deleteItem, getItems} from '../../actions/itemsActions';
 
 class ItemsForm extends React.Component{
+	componentDidMount(){
+		//this.props.getItems();
+	}
+
 	handleSubmit(){
 		const item=[{
 			title: findDOMNode(this.refs.title).value,
