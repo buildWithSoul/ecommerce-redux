@@ -2,23 +2,12 @@
 
 export function itemsReducers(state={
 	items:[
-		{
-			_id: 1, 
-			title: "this is item title",
-			description: "this is the item description",
-			price: '10.99'
-		},
-		{
-			_id: 2, 
-			title: "this is item title2",
-			description: "this is the item description",
-			price: '24.99'
-		},
+		
 	]
 }, action){
 	switch(action.type){
 		case "GET_ITEMS":
-			return {...state, items:[...state.items]}
+			return {...state, items:[...action.payload]}
 		case "POST_ITEM":
 			return {items: [...state.items, ...action.payload]};
 			break;

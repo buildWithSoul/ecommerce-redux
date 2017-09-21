@@ -42,7 +42,6 @@ class ItemsForm extends React.Component{
 			);
 		});
 
-
 		return(
 			<Well>
 				<Panel>
