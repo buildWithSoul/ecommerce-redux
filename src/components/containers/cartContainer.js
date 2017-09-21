@@ -1,7 +1,7 @@
 "use strict"
 import React from 'react';
 import { connect } from 'react-redux';
-import{Panel, Col, Row, Well, Button, ButtonGroup, Modal, Label} from 'react-bootstrap';
+import{Jumbotron, Panel, Col, Row, Well, Button, ButtonGroup, Modal, Label} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {deleteCartItem, updateCart, getCart} from '../../actions/cartActions';
 
@@ -32,7 +32,12 @@ class Cart extends React.Component{
 	}
 
 	renderEmpty(){
-		return(<div/>)
+		return(  <Jumbotron>
+    <h1>Welcome to the MERN Stack Demo!</h1>
+    <p> If you are viewing this, you are probably interested in hiring me or my web agency for a project.</p>
+    <p> In this demo you can try creating and deleting items, and adding them to the cart </p>
+    <p> Using React-Redux-ReactRouter@3.* for the client that connects to a Express-Mongoose-MongoDB server via a reverse proxy </p>
+  </Jumbotron>)
 	}
 
 	onDelete(_id){

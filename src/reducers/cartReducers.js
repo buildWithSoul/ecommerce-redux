@@ -5,7 +5,7 @@ export function cartReducers(state={cart:[]}, action) {
 		case "GET_CART":
 			return{...state,
 				cart: action.payload,
-				totalAmounts: totals(action.payload).amount,
+				totalAmount: totals(action.payload).amount,
 				totalQty: totals(action.payload).quantity
 			}
 		case "ADD_TO_CART":

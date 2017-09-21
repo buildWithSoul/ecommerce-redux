@@ -22610,7 +22610,30 @@ var Cart = function (_React$Component) {
 	}, {
 		key: 'renderEmpty',
 		value: function renderEmpty() {
-			return _react2.default.createElement('div', null);
+			return _react2.default.createElement(
+				_reactBootstrap.Jumbotron,
+				null,
+				_react2.default.createElement(
+					'h1',
+					null,
+					'Welcome to the MERN Stack Demo!'
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					' If you are viewing this, you are probably interested in hiring me or my web agency for a project.'
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					' In this demo you can try creating and deleting items, and adding them to the cart '
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					' Using React-Redux-ReactRouter@3.* for the client that connects to a Express-Mongoose-MongoDB server via a reverse proxy '
+				)
+			);
 		}
 	}, {
 		key: 'onDelete',
@@ -36413,7 +36436,7 @@ function cartReducers() {
 		case "GET_CART":
 			return _extends({}, state, {
 				cart: action.payload,
-				totalAmounts: totals(action.payload).amount,
+				totalAmount: totals(action.payload).amount,
 				totalQty: totals(action.payload).quantity
 			});
 		case "ADD_TO_CART":
