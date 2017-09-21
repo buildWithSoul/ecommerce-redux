@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 // APIs
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/bookshop');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bookshop');
 
 var db= mongoose.connection;
 db.on('error', console.error.bind(console, "# MongoDB error"))
@@ -24,7 +24,7 @@ db.on('error', console.error.bind(console, "# MongoDB error"))
 // --> SET UP SESSION -- //
 app.use(session({
 	secret: 'mysecretString',
-	saveUnitialized: false,
+	saveUninitialized: false,
 	resave: false,
 	cookie: {maxAge: 1000*60*60*24*2},
 	store: new MongoStore({mongooseConnection: db, ttl: 2*24*60*60})
@@ -37,7 +37,6 @@ app.post('/cart', function(req, res){
 		if (err){
 			throw err;
 		}
-
 		res.json(req.session.cart);
 	})
 })
@@ -79,6 +78,28 @@ app.delete('/items/:_id', function(req, res){
 		}
 		res.json(items);
 	});
+})
+
+app.put('/items/:_id', function(req, res){
+	var item = req.body;
+	var query = req.params._id;
+	var update = {
+		'$set': {
+			title: item.title,
+			description: item.description, 
+			image: item.image,
+			price: item.price
+		}
+	};
+
+	var options = {new: true}
+
+	Book.findOneAndUpdate(query, update, options, function(err, books){
+		if (err){
+			throw err;
+		}
+		res.json(books);
+	})
 })
 // END APIs
 
