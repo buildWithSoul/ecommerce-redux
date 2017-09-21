@@ -1,6 +1,10 @@
-README.txt
+Welcome to my MERN STACK DEMO-
 
-Redux-
+working example @ https://mern-stack-demo.herokuapp.com/
+
+
+**** Notes ***
+! Redux-
 
 reducer - store - actions 
 reducer is switch statement
@@ -18,12 +22,23 @@ To keep things pure:
 - operations with objects
   use object.assing() or spread operators
 
-Structure-
+! Backend Structure-
+Web Server to Proxy to API Server to PostGres Data Layer
 
-NoSQL vs SQL-
+! NoSQL vs SQL-
 
 Table are now Collection
 Record are now Document
 Columns are now Fields
 
 NoSQL has no Schema Requirements
+CRUD update methods are all objects
+
+! Mongoose - async connector
+
+! Nodemon - restarts server everytime source code changes
+
+API dev- Nodemon, Mongod, 
+
+Create Model with Mongoose, 
+
